@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if isModification %}
+    Modification
+    {% else %}
+    Ajout
+    {% endif %}
+{% endblock %}
+
+{% block monTitre %}
+    {% if isModification %}
+    Modification de la {{ voiture.modele.libelle }}, immatriculée: {{ voiture.immatriculation }}
+    {% else %}
+    Ajout d'une voiture
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-4 col-md-6 col-sm-10">
+        {{form_start(form)}}
+        {{form_row(form.immatriculation)}}
+        {{form_row(form.nbPortes, {"label" : "Nombre de portes"})}}
+        {{form_row(form.annee, {"label" : "Année du modèle"})}}
+        {{form_row(form.modele, {"label" : "Type de modèle"})}}
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <a href="{{ path('admin') }}" class="btn btn-secondary mr-1">Retour</a>
+                <button type="submit" class="btn btn-success ml-1">Valider</button>
+            </div>
+        </div>
+        {{form_end(form)}}
+    </div>
+</div>
+
+{% endblock %}
